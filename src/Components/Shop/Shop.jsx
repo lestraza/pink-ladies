@@ -3,7 +3,6 @@ import goods from '../../data/goods';
 import { Fade } from 'react-reveal';
 import { Link } from 'react-router-dom';
 import ItemShop from './ItemShop';
-import { withStore } from '../HOC/withData';
 
 
 class Shop extends Component {
@@ -72,4 +71,4 @@ class Shop extends Component {
     }
 }
 
-export default withStore(Shop)
+export default Shop
