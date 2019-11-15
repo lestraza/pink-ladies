@@ -16,8 +16,7 @@ class Shop extends Component {
 
         this.setState({
             cartItems: copyCartItems
-        })
-        this.props.store.dispatch(copyCartItems)
+        })        
 
     }
     countProductsInCart = () => {
