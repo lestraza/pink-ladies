@@ -7,24 +7,7 @@ import ItemShop from './ItemShop';
 
 class Shop extends Component {
 
-    state = {
-        cartItems: [],
-    }
-
-    addProductsToCart = (product) => {
-        const copyCartItems = [...this.state.cartItems, product];
-
-        this.setState({
-            cartItems: copyCartItems
-        })        
-
-    }
-    countProductsInCart = () => {
-        const { cartItems } = this.state;
-        return cartItems.reduce((acc, item) => {
-            return acc + item.amount;
-        }, 0)
-    }
+    
 
     renderItemShop = (type) => {
         const filteredItems = goods.filter(item => {
@@ -40,11 +23,7 @@ class Shop extends Component {
             <div className='wrapper'>
                 <div className='shop'>
                     <h1>MERCH AND ACCESSORIES</h1>
-                    <Link to='/cart'>
-                        <div className="shop__cart">
-                            <div className="shop__cart-amount">{this.countProductsInCart()}</div>
-                        </div>
-                    </Link>
+                   
                     <Fade>
                         <h2>T-SHIRTS</h2>
                         <div className="shop__row">

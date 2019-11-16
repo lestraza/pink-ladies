@@ -37,10 +37,10 @@ export default class ItemShop extends Component {
             this.setState({
                 isAddedToCart: true
             });
-            this.props.addProductsToCart({
-                amount: this.state.amount,
-                id: this.props.item.id
-            });
+            // this.props.addProductsToCart({
+            //     amount: this.state.amount,
+            //     id: this.props.item.id
+            // });
         }
         
     }
