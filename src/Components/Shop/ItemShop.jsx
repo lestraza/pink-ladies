@@ -1,85 +1,16 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import { Fade } from 'react-reveal';
-import { useGlobal } from '../../StateStore/StateStore';
 
-export const ItemShop = (props) => {
-    
-    const { item } = props;
 
-    const [globalState, globalActions] = useGlobal();
-    const { goods } = globalState;
-    
-    const {isAddedToCart} = item;
+function ItemShop(props) {
 
-    const [error, setErrorState] = useState(false)    
-    
+    const {item} = props
 
-    // const decrementAmount = () => {
-    //     const prodsCopy = [...goods];
-    //     if (addedToCart.amount > 1) {
-    //         prodsCopy.forEach(product => {
-    //             product.amount = product.amount - 1
-    //         })
-    //         globalActions.updateItemsInCart(prodsCopy)
-    //     }
-    // }
-    // const incrementAmount = () => {
-    //     const prodsCopy = [...goods];
-    //         prodsCopy.forEach(product => {
-    //             product.amount = product.amount + 1
-    //         })
-    //         globalActions.updateItemsInCart(prodsCopy)
-    // }
+    const [error, setError] = useState(false)
 
-   
-
-    // const addToCart = () => {
-    //     if (!addedToCart.size) {
-    //        setErrorState(true)
-    //     } 
-    //     if (addedToCart.length && addedToCart.size === selectedSize) {
-    //         const prodsCopy = [...goods];
-    //         prodsCopy.forEach(product => {
-    //             if (product.id === addedToCart.id) {
-    //                 product.amount += itemShop.amount
-    //             }
-    //         })
-    //         globalActions.updateItemsInCart(prodsCopy);
-
-    //     } else {
-    //         const productToAddToCart = {
-    //             id: item.id,
-    //             amount: itemShop.amount,
-    //             size: itemShop.selectedSize,
-    //             price: item.price
-    //         }
-    //         globalActions.updateItemsInCart(rodsCopy)
-    //     }
+    const renderSize = () {
         
-
-    // }
-
-    const selectSize = (size) => {            
-        setSelectedSize(size)            
-        setErrorState(false)            
     }
-
-    const renderSize = () => {
-        const { sizes, selectedSizes } = props.item;
-        
-        return sizes.map((size, i) => {            
-            return (
-                <span key={i}
-                    onClick={() => selectSize(size)}
-                    className={selectedSize === size ? 'selected' : ''}>
-                    {size}
-                </span>
-            )
-        })
-    }
-
-    
-
 
     return (
         <div className="shop__item">
@@ -107,5 +38,6 @@ export const ItemShop = (props) => {
             <div className="prim-button" onClick={() => addToCart()}>{!addedToCart.length ? 'Purchase' : 'In your cart'}</div>
         </div>
     )
-
 }
+
+export default ItemShop
