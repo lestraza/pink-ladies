@@ -1,6 +1,6 @@
 import React from 'react';
 import { Fade } from 'react-reveal';
-import { ItemShop } from './ItemShop';
+import ItemShop from './ItemShop';
 import { useGlobal } from '../../StateStore/StateStore';
 
 const Shop = () => {
