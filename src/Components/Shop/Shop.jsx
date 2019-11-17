@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import goods from '../../data/goods';
 import { Fade } from 'react-reveal';
-import { Link } from 'react-router-dom';
-import ItemShop from './ItemShop';
+import { ItemShop } from './ItemShop';
 
 
 class Shop extends Component {
-
-    
 
     renderItemShop = (type) => {
         const filteredItems = goods.filter(item => {
@@ -15,7 +12,7 @@ class Shop extends Component {
         })
 
         return filteredItems.map((item, i) => {
-            return <ItemShop item={item} key={i} addProductsToCart={this.addProductsToCart} />
+            return <ItemShop item={item} key={i} />
         })
     }
     render() {

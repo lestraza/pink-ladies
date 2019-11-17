@@ -16,6 +16,7 @@ $arial: Arial, Helvetica, sans-serif;
 $oswald: 'Alegreya Sans SC', $arial;
 $button-col: #3E7D87;
 
+
 //BREAKPOINTS
 
 $large: "only screen and (max-width : 1370px)";
@@ -115,6 +116,9 @@ input[type=text], select {
 #root {
     background: $main-back;
     min-height: 100%;
+}
+.number {
+    font-family: $arial;
 }
 
 .home {        
@@ -975,5 +979,42 @@ input[type=text], select {
     &.selected {
         background: #fff;
         color: #000;
+    }
+}
+
+.cart {
+
+    &__container {
+        width: 100%;
+
+    }
+    &__item {
+        width: 800px;
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
+    }
+    &__item-preview {
+        max-width: 100px;
+
+    }
+    &__item-info {
+        max-width: 400px;
+        font-size: 25px;
+        padding-top: 30px;
+    }
+    &__item-price {
+        font-weight: bold;
+        padding-top: 37px;
+    
+    }
+    &__amount{
+        padding-top: 37px;
+    }
+    &__total-price {
+        font-size: 27px;
+        div {
+            float: right;
+        }    
     }
 }

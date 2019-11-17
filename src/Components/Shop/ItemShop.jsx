@@ -1,57 +1,56 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Fade } from 'react-reveal';
+import { useGlobal } from '../../StateStore/StateStore';
 
-export default class ItemShop extends Component {
-    state = {
-        amount: 1,
+export const ItemShop = (props) => {
+    const [globalState, globalActions] = useGlobal();
+    const { prods } = globalState;
+    
+    const [ itemShop, updateShopItem] = useState({
+		amount: 1,
         selectedSize: '',
         isAddedToCart: false,
         isShowedError: false
-    }
-    decrementAmount = () => {
-        if (this.state.amount > 1) {
-            this.setState({
-                amount: this.state.amount - 1
-            })
+	})
+
+    const decrementAmount = () => {
+        if (itemShop.amount > 1) {
+            updateShopItem({ ...itemShop, amount: itemShop.amount - 1 })
         }
     }
-    incrementAmount = () => {
-        this.setState({
-            amount: this.state.amount + 1
-        })
+    const incrementAmount = () => {
+        updateShopItem({ ...itemShop, amount: itemShop.amount + 1 })
     }
-    selectSize = (size) => {
-
-        this.setState({
-            selectedSize: size,
-            isShowedError: false
-        })
+    
+    const selectSize = (size) => {
+        updateShopItem({ ...itemShop, selectedSize: size, isShowedError: false })
     }
 
-    addToCart = () => {
-        if (!this.state.selectedSize) {
-            this.setState({
-                isShowedError: true
-            })
+    const addToCart = () => {
+
+        if (!itemShop.selectedSize) {
+            updateShopItem({ ...itemShop, isShowedError: true })
+
         } else {
-            this.setState({
-                isAddedToCart: true
-            });
-            // this.props.addProductsToCart({
-            //     amount: this.state.amount,
-            //     id: this.props.item.id
-            // });
+            updateShopItem({ ...itemShop, isAddedToCart: true })
+            const propsItem = {
+                id: item.id,
+                amount: itemShop.amount,
+                size: itemShop.selectedSize,
+                price: item.price
+            }
+            globalActions.updateItemsInCart([...prods, propsItem])
         }
-        
+
     }
 
-    renderSize = () => {
-        const { sizes } = this.props.item;
-        const { selectedSize } = this.state;
+    const renderSize = () => {
+        const { sizes } = props.item;
+        const { selectedSize } = itemShop;
         return sizes.map((size, i) => {
             return (
                 <span key={i}
-                    onClick={() => this.selectSize(size)}
+                    onClick={() => selectSize(size)}
                     className={selectedSize === size ? 'selected' : ''}>
                     {size}
                 </span>
@@ -59,34 +58,33 @@ export default class ItemShop extends Component {
         })
     }
 
-    render() {
-        const { item } = this.props;
-        const { amount, isAddedToCart, isShowedError } = this.state;
-        return (
-            <div className="shop__item">
-                <img src={item.url} alt="" className='shop__img' />
-                <div className="shop__name">{item.name}</div>
-                <div className="shop__price">
-                    ${item.price}
-                </div>
-                <div className="shop__details">
-                    {isShowedError && <Fade>
-                        <div className={"shop__size-error"}>
-                            Please select your size first
-                        </div>
-                    </Fade>}
-                    
-                    <div className="sizes">
-                        {this.renderSize()}
-                    </div>
-                    <div className="amount">
-                        <span className="amount__change" onClick={() => this.decrementAmount()}>-</span>
-                        <span>{amount}</span>
-                        <span className="amount__change" onClick={() => this.incrementAmount()}>+</span>
-                    </div>
-                </div>
-                <div className="prim-button" onClick={() => this.addToCart()}>{!isAddedToCart ? 'Purchase' : 'In your basket'}</div>
+    const { item } = props;
+
+    return (
+        <div className="shop__item">
+            <img src={item.url} alt="" className='shop__img' />
+            <div className="shop__name">{item.name}</div>
+            <div className="shop__price">
+                ${item.price}
             </div>
-        )
-    }
+            <div className="shop__details">
+                {itemShop.isShowedError && <Fade>
+                    <div className={"shop__size-error"}>
+                        Please select your size first
+                        </div>
+                </Fade>}
+
+                <div className="sizes">
+                    {renderSize()}
+                </div>
+                <div className="amount">
+                    <span className="amount__change" onClick={() => decrementAmount()}>-</span>
+                    <span>{itemShop.amount}</span>
+                    <span className="amount__change" onClick={() => incrementAmount()}>+</span>
+                </div>
+            </div>
+            <div className="prim-button" onClick={() => addToCart()}>{!itemShop.isAddedToCart ? 'Purchase' : 'In your cart'}</div>
+        </div>
+    )
+
 }

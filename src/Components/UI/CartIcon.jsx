@@ -1,32 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { useGlobal } from '../../StateStore/StateStore';
 
-export default class CartIcon extends Component {
-    state = {
-        cartItems: [],
-    }
-
-    addProductsToCart = (product) => {
-        const copyCartItems = [...this.state.cartItems, product];
-
-        this.setState({
-            cartItems: copyCartItems
-        })
-
-    }
-    countProductsInCart = () => {
-        const { cartItems } = this.state;
-        return cartItems.reduce((acc, item) => {
+export const CartIcon = () => {
+   
+    const [globalState] = useGlobal();	
+ 
+    
+    const countProductsInCart = () => {
+        return globalState.prods.reduce((acc, item) => {
             return acc + item.amount;
         }, 0)
     }
-    render() {
+ 
         return (
             <Link to='/cart'>
                 <div className="shop__cart">
-                    <div className="shop__cart-amount">{this.countProductsInCart()}</div>
+                    <div className="shop__cart-amount">{countProductsInCart()}</div>
                 </div>
             </Link>
         )
-    }
+    
 }
