@@ -28,10 +28,17 @@ function CartItem(props) {
         if(cartItem.amount > 1) {
             globalProductsCopy.forEach(globalProd => {
                 if(globalProd.id === cartItem.id) {
+                    if(globalProd.size === cartItem.size)
                     globalProd.amount = cartItem.amount -1
                 }                
             })
     
+            // interface ICartProduct {	
+            // 	id: number,
+            // 	amount: number,
+            // 	size: string,
+            // 	price: number
+            // }
             updateItemsInCart(globalProductsCopy)
         }
     }

@@ -3,51 +3,71 @@ import { Fade } from 'react-reveal';
 import { useGlobal } from '../../StateStore/StateStore';
 
 export const ItemShop = (props) => {
+    
+    const { item } = props;
+
     const [globalState, globalActions] = useGlobal();
-    const { prods } = globalState;
+    const { goods } = globalState;
     
-    const [ itemShop, updateShopItem] = useState({
-		amount: 1,
-        selectedSize: '',
-        isAddedToCart: false,
-        isShowedError: false
-	})
+    const {isAddedToCart} = item;
 
-    const decrementAmount = () => {
-        if (itemShop.amount > 1) {
-            updateShopItem({ ...itemShop, amount: itemShop.amount - 1 })
-        }
-    }
-    const incrementAmount = () => {
-        updateShopItem({ ...itemShop, amount: itemShop.amount + 1 })
-    }
+    const [error, setErrorState] = useState(false)    
     
-    const selectSize = (size) => {
-        updateShopItem({ ...itemShop, selectedSize: size, isShowedError: false })
-    }
 
-    const addToCart = () => {
+    // const decrementAmount = () => {
+    //     const prodsCopy = [...goods];
+    //     if (addedToCart.amount > 1) {
+    //         prodsCopy.forEach(product => {
+    //             product.amount = product.amount - 1
+    //         })
+    //         globalActions.updateItemsInCart(prodsCopy)
+    //     }
+    // }
+    // const incrementAmount = () => {
+    //     const prodsCopy = [...goods];
+    //         prodsCopy.forEach(product => {
+    //             product.amount = product.amount + 1
+    //         })
+    //         globalActions.updateItemsInCart(prodsCopy)
+    // }
 
-        if (!itemShop.selectedSize) {
-            updateShopItem({ ...itemShop, isShowedError: true })
+   
 
-        } else {
-            updateShopItem({ ...itemShop, isAddedToCart: true })
-            const propsItem = {
-                id: item.id,
-                amount: itemShop.amount,
-                size: itemShop.selectedSize,
-                price: item.price
-            }
-            globalActions.updateItemsInCart([...prods, propsItem])
-        }
+    // const addToCart = () => {
+    //     if (!addedToCart.size) {
+    //        setErrorState(true)
+    //     } 
+    //     if (addedToCart.length && addedToCart.size === selectedSize) {
+    //         const prodsCopy = [...goods];
+    //         prodsCopy.forEach(product => {
+    //             if (product.id === addedToCart.id) {
+    //                 product.amount += itemShop.amount
+    //             }
+    //         })
+    //         globalActions.updateItemsInCart(prodsCopy);
 
+    //     } else {
+    //         const productToAddToCart = {
+    //             id: item.id,
+    //             amount: itemShop.amount,
+    //             size: itemShop.selectedSize,
+    //             price: item.price
+    //         }
+    //         globalActions.updateItemsInCart(rodsCopy)
+    //     }
+        
+
+    // }
+
+    const selectSize = (size) => {            
+        setSelectedSize(size)            
+        setErrorState(false)            
     }
 
     const renderSize = () => {
-        const { sizes } = props.item;
-        const { selectedSize } = itemShop;
-        return sizes.map((size, i) => {
+        const { sizes, selectedSizes } = props.item;
+        
+        return sizes.map((size, i) => {            
             return (
                 <span key={i}
                     onClick={() => selectSize(size)}
@@ -58,7 +78,8 @@ export const ItemShop = (props) => {
         })
     }
 
-    const { item } = props;
+    
+
 
     return (
         <div className="shop__item">
@@ -68,7 +89,7 @@ export const ItemShop = (props) => {
                 ${item.price}
             </div>
             <div className="shop__details">
-                {itemShop.isShowedError && <Fade>
+                {error && <Fade>
                     <div className={"shop__size-error"}>
                         Please select your size first
                         </div>
@@ -83,7 +104,7 @@ export const ItemShop = (props) => {
                     <span className="amount__change" onClick={() => incrementAmount()}>+</span>
                 </div>
             </div>
-            <div className="prim-button" onClick={() => addToCart()}>{!itemShop.isAddedToCart ? 'Purchase' : 'In your cart'}</div>
+            <div className="prim-button" onClick={() => addToCart()}>{!addedToCart.length ? 'Purchase' : 'In your cart'}</div>
         </div>
     )
 

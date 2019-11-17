@@ -1,17 +1,21 @@
 import React from 'react';
 import globalHook from 'use-global-hook';
+import goods from '../data/goods';
 
-const initialState = {
-	prods: [],
-	
-  };
-   
-  const actions = {
-	updateItemsInCart: (store, arr) => {
-	  const newProd = arr;	  
-	  store.setState({ prods: newProd });
+// interface ICartProduct {	
+// 	id: number,
+// 	amount: number,
+// 	size: string,
+// 	price: number
+// }
+
+const initialState = { goods };
+
+const actions = {
+	updateItemsInCart: (store, newGoods) => {
+		store.setState({ goods: newGoods });
 	},
 };
-  
-   
-  export const useGlobal = globalHook(React, initialState, actions);
+
+
+export const useGlobal = globalHook(React, initialState, actions);

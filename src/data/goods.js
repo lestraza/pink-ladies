@@ -15,7 +15,10 @@ const shopItems = [
         price: 17.99,
         url: tShirt1,
         sizes: ['s', 'm', 'l', 'xl', 'xxl'],
-        id: 1
+        id: 1,
+        amount: 1,
+        selectedSizes: [],
+        isAddedToCart: false,     
     },
     {
         type: 't-shirts',
@@ -23,7 +26,10 @@ const shopItems = [
         price: 17.99,
         url: tShirt2,
         sizes: ['s', 'm', 'l', 'xl', 'xxl'],
-        id: 2
+        id: 2,
+        amount: 1,
+        selectedSizes: [],
+        isAddedToCart: false,
     },
     {
         type: 't-shirts',
@@ -31,7 +37,10 @@ const shopItems = [
         price: 17.99,
         url: tShirt3,
         sizes: ['s', 'm', 'l', 'xl', 'xxl'],
-        id: 3
+        id: 3,
+        amount: 1,
+        selectedSizes: [],
+        isAddedToCart: false,
     },
     {
         type: 'hoodies',
@@ -39,7 +48,10 @@ const shopItems = [
         price: 27.99,
         url: hoodie1,
         sizes: ['s', 'm', 'l', 'xl', 'xxl'],
-        id: 4
+        id: 4,
+        amount: 1,
+        selectedSizes: [],
+        isAddedToCart: false,
     },
     {
         type: 'hoodies',
@@ -47,7 +59,10 @@ const shopItems = [
         price: 27.99,
         url: hoodie2,
         sizes: ['s', 'm', 'l', 'xl', 'xxl'],
-        id: 5
+        id: 5,
+        amount: 1,
+        selectedSizes: [],
+        isAddedToCart: false,
     },
     {
         type: 'hoodies',
@@ -63,7 +78,10 @@ const shopItems = [
         price: 6.99,
         url: hat1,
         sizes: ['s', 'm'],
-        id: 7
+        id: 7,
+        amount: 1,
+        selectedSizes: [],
+        isAddedToCart: false,
     },
     {
         type: 'hats',
@@ -71,7 +89,10 @@ const shopItems = [
         price: 6.99,
         url: hat2,
         sizes: ['s', 'm'],
-        id: 8
+        id: 8,
+        amount: 1,
+        selectedSizes: [],
+        isAddedToCart: false,
     },
     {
         type: 'hats',
@@ -79,7 +100,10 @@ const shopItems = [
         price: 5.99,
         url: hat3,
         sizes: ['s', 'm'],
-        id: 9
+        id: 9,
+        amount: 1,
+        selectedSizes: [],
+        isAddedToCart: false,
     },
 ]
 export default shopItems;

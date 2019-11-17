@@ -6,7 +6,7 @@ import AdressForm from './AdressForm';
 const Cart = () => {
     const [globalState] = useGlobal();
     const { prods } = globalState;
-
+console.log(prods);
 
     const countTotalPrice = () => {
         return prods.reduce((acc, item) => {
