@@ -1,37 +1,40 @@
 {
   "name": "pink_ladies",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "dependencies": {
-    "node-sass": "^4.13.0",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-reveal": "^1.2.2",
-    "react-router": "^5.1.2",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.2.0",
-    "react-scroll": "^1.7.14",
-    "use-global-hook": "^0.1.12"
+    "axios": "^0.19.0",
+    "bcrypt": "^2.0.1",
+    "body-parser": "^1.18.3",
+    "cloudinary": "^1.11.0",
+    "concurrently": "^3.6.0",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "express-formidable": "^1.0.0",
+    "express-session": "^1.17.0",
+    "jsonwebtoken": "^8.3.0",
+    "moment": "^2.22.2",
+    "mongoose": "^5.1.6",
+    "multer": "^1.3.0"
   },
+  "devDependencies": {},
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js",
+    "server": "nodemon server/server.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lestraza/pink-ladies.git"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lestraza/pink-ladies/issues"
+  },
+  "homepage": "https://github.com/lestraza/pink-ladies#readme"
 }
